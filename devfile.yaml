@@ -1,4 +1,4 @@
-schemaVersion: 2.1.0
+schemaVersion: 2.2.0
 metadata:
   name: superheroes-workshop
 components:
@@ -36,5 +36,5 @@ events:
 commands:
   - id: set-java-17
     exec:
-      commandLine: sdk default java 17.0.3-tem
+      commandLine: echo "test"
       component: tools
