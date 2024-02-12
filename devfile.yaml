@@ -7,7 +7,7 @@ components:
       image: quay.io/devfile/universal-developer-image@sha256:75034f0dad7a6df3db53e20fc3597b68f2311e556164d47aa9151d3b3584bbce
       memoryLimit: 8Gi
       memoryRequest: 1Gi
-      cpuLimit: 2
+      cpuLimit: "2"
       cpuRequest: 200m
       env:
         - name: USE_JAVA17
