@@ -1,0 +1,40 @@
+schemaVersion: 2.1.0
+metadata:
+  name: superheroes-workshop
+components:
+  - name: tools
+    container:
+      image: quay.io/devfile/universal-developer-image@sha256:75034f0dad7a6df3db53e20fc3597b68f2311e556164d47aa9151d3b3584bbce
+      memoryLimit: 8Gi
+      memoryRequest: 1Gi
+      cpuLimit: 2
+      cpuRequest: 200m
+      env:
+        - name: USE_JAVA17
+          value: "true"
+      endpoints:
+        - exposure: public
+          name: http-booster
+          protocol: http
+          targetPort: 8080
+          attributes:
+            discoverable: true
+            urlRewriteSupported: true
+        - exposure: internal
+          name: debug
+          protocol: http
+          targetPort: 5005
+      volumeMounts:
+        - name: m2
+          path: /home/user/.m2
+  - name: m2
+    volume:
+      size: 10G
+events:
+  postStart:
+    - set-java-17         
+commands:
+  - id: set-java-17
+    exec:
+      commandLine: sdk default java 17.0.3-tem
+      component: tools
